@@ -36,10 +36,10 @@ const reduxFormConfig = {
 
 const mockStore = () => createStore(combineReducers({ form: reducer }), applyMiddleware(thunk))
 
-const prepareStore = (values) => {
+const prepareStore = (values, config = reduxFormConfig) => {
   const { dispatch, getState } = mockStore()
   return {
-    submit: () => dispatch(submit(reduxFormConfig, values)),
+    submit: () => dispatch(submit(config, values)),
     getFormState: () => getState().form.testForm
   }
 }
@@ -51,7 +51,10 @@ test('initial state', (t) => {
     t.ok(formState, 'should have form state')
     t.ok(formState.registeredFields, 'should have registeredFields')
     t.equal(formState.registeredFields.length, 2, 'registeredFields should have length of 2')
-    t.end()
+    submit().then((submitErrors) => {
+      t.pass('should submit an already initialized form')
+      t.end()
+    })
   })
 })
 
@@ -83,6 +86,34 @@ test('asyncErrors', (t) => {
     t.same(asyncErrors, { input2: 'wrong' }, 'should result error')
     t.ok(formState.asyncErrors, 'should have asyncErrors')
     t.equal(formState.asyncErrors.input2, 'wrong', 'should have input2 syncError')
+    t.end()
+  })
+})
+
+test('without validate', (t) => {
+  const { getFormState, submit } = prepareStore(
+    { input1: 'wrong' },
+    { ...reduxFormConfig, validate: undefined }
+  )
+  submit().then((submitErrors) => {
+    const formState = getFormState()
+    t.same(submitErrors, { input1: 'not right' }, 'should result error')
+    t.ok(formState.submitErrors, 'should have submitErrors')
+    t.equal(formState.submitErrors.input1, 'not right', 'should have input1 submitError')
+    t.end()
+  })
+})
+
+test('without asyncValidate', (t) => {
+  const { getFormState, submit } = prepareStore(
+    { input2: 'wrong' },
+    { ...reduxFormConfig, asyncValidate: undefined }
+  )
+  submit().then((submitErrors) => {
+    const formState = getFormState()
+    t.same(submitErrors, { input1: 'not right' }, 'should result error')
+    t.ok(formState.submitErrors, 'should have submitErrors')
+    t.equal(formState.submitErrors.input1, 'not right', 'should have input1 submitError')
     t.end()
   })
 })
