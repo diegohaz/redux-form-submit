@@ -1,6 +1,6 @@
 {
   "name": "redux-form-submit",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Adds a submit action creator to redux-form",
   "main": "dist/index.js",
   "files": [
