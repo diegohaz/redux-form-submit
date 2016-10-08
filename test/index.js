@@ -39,6 +39,7 @@ const mockStore = () => createStore(combineReducers({ form: reducer }), applyMid
 const prepareStore = (values, config = reduxFormConfig) => {
   const { dispatch, getState } = mockStore()
   return {
+    getState,
     submit: () => dispatch(submit(config, values)),
     getFormState: () => getState().form.testForm
   }
@@ -116,4 +117,38 @@ test('without asyncValidate', (t) => {
     t.equal(formState.submitErrors.input1, 'not right', 'should have input1 submitError')
     t.end()
   })
+})
+
+test('already initialized', (t) => {
+  const { getState, submit } = prepareStore(undefined, {
+    ...reduxFormConfig,
+    fields: undefined
+  })
+  getState().form = {
+    testForm: {
+      initial: {},
+      registeredFields: [
+        { name: 'input1', type: 'Field' },
+        { name: 'input2', type: 'Field' }
+      ]
+    }
+  }
+  submit().then((submitErrors) => {
+    t.same(submitErrors, { input1: 'not right' }, 'should result error')
+    t.end()
+  })
+})
+
+test('already initialized without registeredFields', (t) => {
+  const { getState, submit } = prepareStore(undefined, {
+    ...reduxFormConfig,
+    fields: undefined
+  })
+  getState().form = {
+    testForm: {
+      initial: {}
+    }
+  }
+  t.throws(submit, Error, 'should throw')
+  t.end()
 })

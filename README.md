@@ -46,7 +46,6 @@ const onSubmit = (values) => {
 // Exports the redux-form config
 export const config = {
   form: 'myForm',
-  fields: ['input1', 'input2'],
   onSubmit
 }
 
@@ -67,7 +66,6 @@ dispatch(submit(config, { input1: 'wrong value' }))
 
 As this has nothing to do with the form component, it:
  - can't call custom submit methods other than `onSubmit`;
- - can't identify the field types, so it only works with `Field`;
  - can't pass `props` to `onSubmit`, `asyncValidate` etc.
 
 ## License

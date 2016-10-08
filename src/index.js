@@ -15,15 +15,21 @@ import handleSubmit from 'redux-form/lib/handleSubmit'
 import asyncValidation from 'redux-form/lib/asyncValidation'
 
 const submit = (config, values) => (dispatch, getState) => {
-  const { form, fields, validate, onSubmit, asyncValidate } = config
+  const { form, validate, onSubmit, asyncValidate } = config
+  let { fields } = config
+  const formState = getState().form[form]
   values = values || getFormValues(form)(getState()) || {}
 
-  if (!getState().form[form]) {
+  if (!formState) {
     dispatch(initialize(form, values))
     fields.forEach((field) => {
       dispatch(registerField(form, field, 'Field'))
     })
     values = getFormValues(form)(getState())
+  } else if (formState.registeredFields) {
+    fields = formState.registeredFields.map((field) => field.name)
+  } else {
+    throw new Error('You must set fields on redux-form config')
   }
 
   if (typeof validate === 'function') {
