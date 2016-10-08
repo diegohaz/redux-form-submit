@@ -79,7 +79,7 @@ test('syncErrors', (t) => {
   })
 })
 
-test('asyncErrors', (t) => {
+test.skip('asyncErrors', (t) => {
   const { getFormState, submit } = prepareStore({ input2: 'wrong' })
   submit().catch((asyncErrors) => {
     const formState = getFormState()
