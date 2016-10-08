@@ -4,9 +4,10 @@
 [![Build Status][travis-image]][travis-url]
 [![Coveralls Status][coveralls-image]][coveralls-url]
 [![Dependency Status][depstat-image]][depstat-url]
-[![Downloads][download-badge]][npm-url]
 
-> Adds a submit action creator to [redux-form](https://github.com/erikras/redux-form)
+Adds a submit action creator to [redux-form](https://github.com/erikras/redux-form)
+
+**Attention: this library uses internal methods of [redux-form](https://github.com/erikras/redux-form)**
 
 ## The Problem
 
