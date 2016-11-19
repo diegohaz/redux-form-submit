@@ -5,13 +5,13 @@
 [![Coveralls Status][coveralls-image]][coveralls-url]
 [![Dependency Status][depstat-image]][depstat-url]
 
-Adds a submit action creator to [redux-form](https://github.com/erikras/redux-form)
-
-**Attention: this library uses internal methods of [redux-form](https://github.com/erikras/redux-form)**
+Adds an async submit action creator to [redux-form](https://github.com/erikras/redux-form) v6.
 
 ## The Problem
 
-[redux-form](https://github.com/erikras/redux-form) doesn't provide a way to submit a form by dispatching an action. This module works like a plugin that exports a `submit` action creator to do that with a few [limitations](#limitations).
+[redux-form](https://github.com/erikras/redux-form), before [v6.2.0](https://github.com/erikras/redux-form/releases/tag/v6.2.0), doesn't provide a way to submit a form by dispatching an action. This module works like a plugin that exports a `submit` action creator to do that with a few [limitations](#limitations).
+
+If you are using `redux-form@6.2.0` or higher, you probably don't need this, you can just use the built in `submit` action creator. But, there're cases when that isn't enough. An [example](https://github.com/diegohaz/arc/blob/179458033e737eb833521cfbdddbedc4da2f0466/src/containers/SamplePage.js) is when you want to enable form submission on the server.
 
 ## Install
 
