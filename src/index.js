@@ -51,7 +51,7 @@ const submit = (config, values) => (dispatch, getState) => {
   return Promise.resolve().then(() => handleSubmit(
     onSubmit,
     props,
-    isValid(form)(getState()),
+    isValid(form, (state) => state.form)(getState()),
     asyncValidate && asyncValidation.bind(
       null,
       () => asyncValidate(values, dispatch, props),
