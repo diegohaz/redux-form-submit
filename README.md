@@ -28,14 +28,12 @@ First, as this is asynchronous, you need to apply the [redux-thunk](https://gith
 import React from 'react'
 import { reduxForm, Field } from 'redux-form'
 
-const MyForm = () => {
-  return (
-    <form>
-      <Field name="input1" component="input" />
-      <Field name="input2" component="input" />
-    </form>
-  )
-}
+const MyForm = () => (
+  <form>
+    <Field name="input1" component="input" />
+    <Field name="input2" component="input" />
+  </form>
+)
 
 const onSubmit = (values) => {
   if (values.input1 !== 'right value') {
