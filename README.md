@@ -74,7 +74,7 @@ MIT © [Diego Haz](http://github.com/diegohaz)
 [npm-image]: https://img.shields.io/npm/v/redux-form-submit.svg?style=flat-square
 
 [travis-url]: https://travis-ci.org/diegohaz/redux-form-submit
-[travis-image]: https://img.shields.io/travis/diegohaz/redux-form-submit.svg?style=flat-square
+[travis-image]: https://img.shields.io/travis/diegohaz/redux-form-submit/master.svg?style=flat-square
 
 [coveralls-url]: https://coveralls.io/r/diegohaz/redux-form-submit
 [coveralls-image]: https://img.shields.io/coveralls/diegohaz/redux-form-submit.svg?style=flat-square
