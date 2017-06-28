@@ -56,7 +56,7 @@
     "coveralls": "^2.11.4",
     "dependency-check": "^2.5.1",
     "doctoc": "^1.2.0",
-    "eslint": "^3.7.1",
+    "eslint": "^4.0.0",
     "eslint-config-standard": "^6.2.0",
     "eslint-plugin-promise": "^3.4.0",
     "eslint-plugin-standard": "^2.0.1",
