@@ -1,5 +1,7 @@
 # redux-form-submit
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/diegohaz/redux-form-submit.svg)](https://greenkeeper.io/)
+
 [![NPM version][npm-image]][npm-url]
 [![Build Status][travis-image]][travis-url]
 [![Coveralls Status][coveralls-image]][coveralls-url]
